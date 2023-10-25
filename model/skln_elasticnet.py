@@ -12,7 +12,7 @@ def train(in_alpha, in_l1_ratio):
 
     # Read the wine-quality csv file (make sure you're running this from the root of MLflow!)
     #  Assumes wine-quality.csv is located in the same folder as the notebook
-    wine_path = "data/raw/wine-quality.csv"
+    wine_path = "/mnt/g/Text Books/Business Analytics/dl_int_projects/dagshub/mlopsdagshub/data/raw/wine-quality.csv"
     data = pd.read_csv(wine_path)
 
     # Split the data into training and test sets. (0.75, 0.25) split.
@@ -59,7 +59,7 @@ def train(in_alpha, in_l1_ratio):
 
         mlflow.sklearn.log_model(lr, "model")
 
-if __name__=="main":
+if __name__=="__main__":
     import os
     import warnings
     import sys
@@ -71,12 +71,12 @@ if __name__=="main":
     import logging
     import mlflow
     import mlflow.sklearn
-    mlflow.set_tracking_url("https://dagshub.com/wasif20875/mlopsdagshub.mlflow")
-    tracking_url=mlflow.get_tracking_url()
+    mlflow.set_tracking_uri("https://dagshub.com/wasif20875/mlopsdagshub.mlflow")
+    tracking_url=mlflow.get_tracking_uri()
     print(f"current tracking url in {tracking_url}")
 
     logging.basicConfig(level=logging.WARN)
-    logger=logging.getLogger(_name_)
+    logger=logging.getLogger(__name__)
 
-    for i in np.range(0,5,0.1):
+    for i in np.arange(0,5,0.1):
         train(i,i)
